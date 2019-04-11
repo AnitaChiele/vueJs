@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
 
-  <title>[A02-A03] - Diretiva</title>
+  <title>[A02-A04] - Diretiva</title>
 </head>
 <body>
 
@@ -56,7 +56,7 @@
         <p>
             Show título: <b class="in_console" v-if="status">{{titulo}}</b>
         </p>
-    </div>
+    </div> <!-- #app01 ::end::-->
 
     <hr>
 
@@ -78,7 +78,7 @@
             Com o v-show ele escreve o texto na tela, porém utiliza o css para não exibí-la, ou seja, o elemento
             existe em tela, só não é visível.
         </p>
-    </div>
+    </div> <!-- #app02 ::end::-->
 
     <hr>
 
@@ -97,7 +97,7 @@
         <p class='text-tip'>
             Para utilizar if e else não é necessário que a tag if e else sejam do mesmo tipo.
         </p>
-    </div>
+    </div> <!-- #app03 ::end::-->
 
     <hr>
 
@@ -119,7 +119,43 @@
                 Nenhum usuário com id igual a 1.
             </div>
         </p>
-    </div>
+    </div> <!-- #app04 ::end::-->
+
+    <hr>
+
+    <div id="app05">
+        <h2>v-for</h2>
+        <div class="row">
+
+            <div class="col-4">
+                <p>
+                    Linguagens - objeto:
+                    <ul class="in_console">
+                        <li v-for="linguagem in linguagens">{{linguagem}}</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="col-4">
+                <p>
+                    Linguagens - acessando o atributo:
+                    <ul class="in_console">
+                        <li v-for="linguagem in linguagens">{{linguagem.nome}}</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="col-4">
+                <p>
+                    Linguagens - imprimindo o index:
+                    <ul class="in_console">
+                        <li v-for="(l, index) in linguagens">{{index}} {{l.nome}}</li>
+                    </ul>
+                </p>
+            </div>
+
+        </div> <!-- .row ::end::-->
+    </div> <!-- #app05 ::end::-->
 
 </div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
 
@@ -158,6 +194,19 @@
                 nome: 'Seya',
                 profissao: 'Cavaleiro de Atena'
             }
+        }
+    })
+
+    let app05 = new Vue({
+        el: "#app05",
+        data: {
+            linguagens: [
+                { nome: "Python" },
+                { nome: "Go" },
+                { nome: "JavaScript" },
+                { nome: "PHP" },
+                { nome: "C" }
+            ]
         }
     })
 </script>
