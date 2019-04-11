@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="static/css/style.css">
 
-  <title>[A02] - Diretiva</title>
+  <title>[A02-A03] - Diretiva</title>
 </head>
 <body>
 
@@ -42,8 +42,124 @@
         </code>
 
     </p>
+
+    <hr>
+
+    <div id="app01">
+        <h2>v-if</h2>
+        <p>
+            Para exibir o título vá no console do navegador e altere o valor de stauts para true:
+        </p>
+        <code>
+            $ app01.status = true
+        </code>
+        <p>
+            Show título: <b class="in_console" v-if="status">{{titulo}}</b>
+        </p>
+    </div>
+
+    <hr>
+
+    <div id="app02">
+        <h2>v-show</h2>
+        <p>
+            Para exibir o título vá no console do navegador e altere o valor de stauts para true:
+        </p>
+        <code>
+            $ app02.status = true
+        </code>
+        <p>
+            Show título: <b class="in_console" v-show="status">{{titulo}}</b>
+        </p>
+        <p class='text-warning'>
+            <span class="titulo">v-show VS v-if</span> <br />
+            A diferença entre utilizar v-show e v-if neste cenário explicitamente é que com o v-if ele não
+            renderiza o título quando status == false. <br />
+            Com o v-show ele escreve o texto na tela, porém utiliza o css para não exibí-la, ou seja, o elemento
+            existe em tela, só não é visível.
+        </p>
+    </div>
+
+    <hr>
+
+    <div id="app03">
+        <h2>v-else</h2>
+        <p>
+            Para exibir o título vá no console do navegador e altere o valor de stauts para true:
+        </p>
+        <code>
+                $ app03.status = true
+        </code>
+        <p>
+            <b class="in_console" v-if="status">{{titulo}}</b>
+            <strong class="in_console" v-else="status">Não há título.</strong>
+        </p>
+        <p class='text-tip'>
+            Para utilizar if e else não é necessário que a tag if e else sejam do mesmo tipo.
+        </p>
+    </div>
+
+    <hr>
+
+    <div id="app04">
+        <h2>Com dados mais próximos da realidade</h2>
+        <p>
+            Para exibir o conteúdo do else, no console do navegador altere o valor de usuario.id para 2:
+        </p>
+        <code>
+            $ app04.usuario.id = 2
+        </code>
+        <p>
+            <div class="in_console" v-if="usuario.id == 1">
+                Id: {{usuario.id}}, <br />
+                Nome: {{usuario.nome}}, <br />
+                Profissão: {{usuario.profissao}}
+            </div>
+            <div class="in_console" v-else>
+                Nenhum usuário com id igual a 1.
+            </div>
+        </p>
+    </div>
+
 </div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
 
 <script src="https://unpkg.com/vue"></script>
+
+<script>
+    let app01 = new Vue({
+        el: "#app01",
+        data:{
+            status: false,
+            titulo: "Diretiva if"
+        }
+    })
+
+    let app02 = new Vue({
+        el: "#app02",
+        data: {
+            status: false,
+            titulo: "Diretiva show"
+        }
+    })
+
+    let app03 = new Vue({
+        el: "#app03",
+        data: {
+            status: false,
+            titulo: "Diretiva else"
+        }
+    })
+
+    let app04 = new Vue({
+        el: "#app04",
+        data: {
+            usuario:{
+                id: 1,
+                nome: 'Seya',
+                profissao: 'Cavaleiro de Atena'
+            }
+        }
+    })
+</script>
 </body>
 </html>

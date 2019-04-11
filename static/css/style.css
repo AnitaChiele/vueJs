@@ -6,6 +6,10 @@ h1{
     color:#0593ff;
     text-align: center;
 }
+h2{
+    text-align: center;
+    color:#CECE
+}
 hr{
     border-top:1px solid rgba(204, 185, 187, 0.34);
 }
@@ -23,7 +27,30 @@ code{
     font-family: menlo, monospace;
     font-size:16px;
     display: -webkit-inline-box;
-    margin: 5px 0px;
+    margin: 5px 0px 10px 0px;
+}
+.in_console{
+    color:yellow;
+}
+.text-warning{
+    text-align: center;
+    padding: 20px;
+    border-left: 5px #920d0d solid;
+    background: #00000082;
+    margin-top: 20px;
+    font-style: italic;
+}
+.text-warning .titulo{
+    display: -webkit-box;
+}
+.text-tip{
+    color:#b1e3ec;
+    text-align: center;
+    padding:20px;
+    border-left: 5px #17a2b8 solid;
+    background: #17a2b840;
+    margin-top: 20px;
+    font-style: italic;
 }
 code.white{
     background-color:#FFF;
