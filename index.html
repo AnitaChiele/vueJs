@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aula 01 - Vuejs do jeito ninja!</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{titulo}}</h1>
+  </div>
+  <hr>
+  <div id="app2">
+    <h2>{{titulo}}</h2>
+  </div>
+  <hr>
+  >> {{titulo}}
+
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    // pode ser anônima.
+    new Vue({
+        // elemento onde o Vue.js vai ser aplicado.
+        el: "#app",
+        data: {
+          titulo: "Aula 01 - Vuejs do jeito ninja!"
+        }
+    })
+
+    /*
+      Desta forma a variável teste fica reativa, ou seja, se alterar
+      o conteúdo da variável que imprime o valor, o novo conteúdo já
+      será visível sem precisar recarregar a página.
+
+      Teste no F12 do Chrome:
+      $ teste.titulo = 'Novo título!'
+    */
+    let teste = new Vue({
+      el:"#app2",
+      data: {
+        titulo: "Aula 01 - Vuejs do jeito ninja!"
+      }
+    })
+  </script>
+</body>
+</html>
