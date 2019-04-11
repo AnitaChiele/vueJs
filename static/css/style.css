@@ -61,7 +61,7 @@ code{
     font-style: italic;
 }
 
-input[type='text'], textarea, select, button {
+input[type='text'], textarea, select{
     display: block;
     width: 100%;
     height: calc(1.5em + .75rem + 2px);

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../static/css/style.css">
 
-  <title>[A06] - Diretiva bind</title>
+  <title>[A06-A07] - Diretiva bind</title>
 </head>
 <body>
 
@@ -93,6 +93,42 @@
 
     </div>
 
+    <hr>
+
+    <div id="app04">
+        <p>
+            Digite os comandos abaixo no console para alterar as definições dos botões:
+        </p>
+        <div class="row">
+            <div class="col-6">
+                <p>
+                    <code>
+                        $ app04.btnClassEnviar[1]['btn-lg']=false
+                    </code>
+                    <code>
+                        $ app04.btnClassLimpar['btn-danger']=false
+                    </code>
+                </p>
+            </div>
+
+            <div class="col-6">
+                <p>
+                    <code>
+                        $ app04.btnStyleLimpar[1]['text-transform'] = 'uppercase'
+                    </code>
+                    <code>
+                        $ app04.btnStyleEnviar['font-size'] = '45px'
+                    </code>
+                </p>
+            </div>
+        </div>
+
+        <p>
+            <button class="btn" :class="btnClassLimpar" :style="btnStyleLimpar">Limpar</button>
+            <button class="btn" :class="btnClassEnviar" :style="btnStyleEnviar">Enviar</button>
+        </p>
+    </div>
+
 
 
 </div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
@@ -119,6 +155,26 @@
         el: "#app03",
         data: {
             cssClass: "",
+        }
+    })
+
+    let app04 = new Vue({
+        el: "#app04",
+        data: {
+            btnClassLimpar:{
+                'btn-danger': true,
+                'btn-sm': false
+            },
+            btnClassEnviar: [
+                'btn-primary', {'btn-lg': true}
+            ],
+            btnStyleLimpar: [
+                {'font-size': '25px'},
+                {'text-transform': 'lowercase'},
+            ],
+            btnStyleEnviar: {
+                'font-size':'15px',
+            }
         }
     })
 </script>
