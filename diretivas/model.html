@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+
+  <title>[A05] - Diretiva model</title>
+</head>
+<body>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Diretiva model</h1>
+
+    <p>
+        Para utilizar o model basta declarar a variável no data do seu app e setar o campo que deseja com a diretiva: <v-model class=""></v-model>
+    </p>
+
+    <p>
+        <code>
+            &ltinput type="text" v-model="nome">
+        </code>
+    </p>
+
+    <hr>
+
+    <div id="app01">
+        <div class="row">
+            <div class="col-8">
+                <p>
+                    <input type="text" v-model="nome" placeholder="Digite seu nome" aria-label="Digite seu nome">
+                </p>
+            </div>
+            <div class="col-4">
+                <p>
+                    <input type="text" v-model="telefone" placeholder="Digite seu telefone" aria-label="Digite seu telefone">
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <p>
+                    Deseja receber e-mails que você não vai ler, só excluir? <br />
+                </p>
+                <p>
+                    <label> <input type="radio" v-model="novidades" name="novidades" value="Sim"> Sim </label>
+                    &nbsp;&nbsp;
+                    <label> <input type="radio" v-model="novidades" name="novidades" value="Não"> Não </label>
+                </p>
+            </div>
+            <div class="col-5">
+                <p>Interesses:</p>
+                <label> <input type="checkbox" v-model="interesses" name="interesses[]" value="Vôlei"> Vôlei </label>
+                &nbsp;&nbsp;&nbsp;
+                <label> <input type="checkbox" v-model="interesses" name="interesses[]" value="Curling"> Curling </label>
+                &nbsp;&nbsp;&nbsp;
+                <label> <input type="checkbox" v-model="interesses" name="interesses[]" value="Tênis"> Tênis </label>
+                &nbsp;&nbsp;&nbsp;
+                <label> <input type="checkbox" v-model="interesses" name="interesses[]" value="Nada(r) disso"> Nada(r) disso </label>
+            </div>
+            <div class="col-3">
+                <p>Como nos conheceu?</p>
+                <p>
+                    <select name="conheceu" v-model="conheceu">
+                        <option value="Google">Google</option>
+                        <option value="Altavista">Altavista</option>
+                        <option value="Cadê">Cadê</option>
+                        <option value="Nunca conheci vocês">Nunca conheci vocês</option>
+                    </select>
+                </p>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <p>
+            Seu nome é: <span class="in_realtime">{{nome}}</span> <br />
+            Seu telefone é: <span class="in_realtime">{{telefone}}</span> <br />
+            Vai umas novidades? <span class="in_realtime">{{novidades}}</span> <br />
+            Interesses: <span class="in_realtime">{{interesses}}</span> <br />
+            Como nos conheceu? <span class="in_realtime">{{conheceu}}</span>
+        </p>
+    </div> <!-- #app01 ::end::-->
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    let app01 = new Vue({
+        el: "#app01",
+        data:{
+            nome: "",
+            telefone: "",
+            novidades: "",
+            interesses: [],
+            conheceu: "",
+        }
+    })
+</script>
+</body>
+</html>
