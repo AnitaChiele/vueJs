@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <title>[A02] - Diretiva</title>
+</head>
+<body>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Diretivas</h1>
+    <hr>
+
+    <p>
+        O Vue.js possui várias diretivas, também é possível criar diretivas personalizadas. <br />
+        Em Vue.js as diretivas são códigos que são implementáveis dentro da tag html, e começam sempre com o prefixo <b>vs-</b>
+        Ex de diretivas do Vue.js: <br />
+        <ul>
+            <li>
+                v-for
+            </li>
+            <li>
+                v-model
+            </li>
+            <li>
+                v-if
+            </li>
+            <li>
+                v-else
+            </li>
+        </ul>
+    </p>
+    <p>
+        Ex: <br />
+        <code>
+            &ltdiv id='diretiva' -v-if='$instrucao'>&lt/div>
+        </code>
+
+    </p>
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+</body>
+</html>

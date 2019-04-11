@@ -1,0 +1,31 @@
+body{
+    background: #06406c;
+    color:#FFF;
+}
+h1{
+    color:#0593ff;
+    text-align: center;
+}
+hr{
+    border-top:1px solid rgba(204, 185, 187, 0.34);
+}
+ul{
+    list-style: none;
+
+}
+code{
+    background-color: #000c;
+    color: #FFF;
+    font-style: normal;
+    border-radius: 10px;
+    color: lime;
+    padding: 5px 15px;
+    font-family: menlo, monospace;
+    font-size:16px;
+    display: -webkit-inline-box;
+    margin: 5px 0px;
+}
+code.white{
+    background-color:#FFF;
+    color:#000;
+}

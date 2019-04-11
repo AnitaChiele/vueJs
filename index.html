@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aula 01 - Vuejs do jeito ninja!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+
+    <title>Aula 01 - Vuejs do jeito ninja!</title>
 </head>
 <body>
-  <div id="app">
-    <h1>{{titulo}}</h1>
-  </div>
-  <hr>
-  <div id="app2">
-    <h2>{{titulo}}</h2>
-  </div>
-  <hr>
-  >> {{titulo}}
+
+<div class="container"><div class="row"><div class="col-12">
+    <div id="app">
+        <h1>{{titulo}}</h1>
+    </div>
+
+    <hr>
+
+    <div id="app2">
+        <h2>{{titulo}}</h2>
+    </div>
+
+    <hr>
+
+    >> {{titulo}}
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
 
   <script src="https://unpkg.com/vue"></script>
   <script>
