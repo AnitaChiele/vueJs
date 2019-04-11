@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+
+  <title>[A08] - Diretiva on</title>
+</head>
+<body>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1> Diretiva on </h1>
+    <p>
+        Utilizado para acessar os métodos da Vue.js.
+    </p>
+
+    <p>
+        <code>
+            &ltbutton v-on:click="metodo">Enviar&lt/button>
+        </code>
+    </p>
+
+
+    <p class='text-tip'>
+        <span class="titulo">Atalho para o v-on:</span> <br />
+        É possível substituir o <i>v-on</i> por: arroba ( <i>@</i> ), ex: <br />
+        <code>
+            &ltbutton @click="metodo">Enviar&lt/button>
+        </code>
+    </p>
+
+    <hr>
+
+    <div id="app01">
+        <form action="http://google.com">
+            <button type="submit" class="btn btn-primary" v-on:click="enviar()">Enviar</button>
+        </form>
+    </div>
+
+    <p class='text-tip'>
+        <span class="titulo">Diretiva on e o action do formulário:</span> <br />
+        É possível utilizar a diretiva v-on junto com a ação de submit do formulário.
+        O primeiro evento a ser disparado é o v-on, no caso do exemplo acima, é um
+        click, e posteriormente é executado o submit de fato.
+    </p>
+
+    <hr>
+
+    <div id="app02">
+        <p>
+            Também é possível cancelar o envio do formulário, só disparar a função definida no v-on.
+        </p>
+        <form action="http://google.com">
+            <button type="submit" class="btn btn-primary" @click.prevent.stop="enviar()">Dispara função</button>
+        </form>
+    </div>
+
+
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    let app01 = new Vue({
+        el: "#app01",
+        methods:{
+            enviar(){
+                alert("Enviado!")
+            }
+        }
+    })
+
+    let app02 = new Vue({
+        el: "#app02",
+        methods: {
+            enviar() {
+                alert("Enviado!")
+            }
+        }
+    })
+</script>
+</body>
+</html>
