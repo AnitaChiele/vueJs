@@ -20,8 +20,9 @@ ul{
     list-style: none;
 
 }
+pre code,
 code{
-    background-color: #000c;
+    background-color: #000000a6;
     color: #FFF;
     font-style: normal;
     border-radius: 10px;

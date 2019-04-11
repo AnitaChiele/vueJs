@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <title>[A09] - Filters</title>
+</head>
+<body>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Filters</h1>
+
+    <p>
+        No Vue.js é possível criar filtros, para isso existe um método chamado: filters. O primeiro parâmetro
+        é sempre a própria string. Utilizamos o pipe ( | ) para a chamada do filter.
+    </p>
+
+<pre><code>new Vue({
+    el: "#app01",
+    data:{},
+    filters:{
+        nomeFuncao(param1){}
+    }
+})</code></pre>
+
+    <hr>
+
+    <div id="app01">
+        <div class="row">
+            <div class="col-4">
+                <ul>
+                    <li v-for="u in usuarios">{{u.nome}}</li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <ul>
+                    <li v-for="u in usuarios">{{u.nome|toUpperCase() }}</li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <ul>
+                    <li v-for="u in usuarios">{{u.nome|truncate(4) }}</li>
+                </ul>
+            </div>
+        </div>
+    </div> <!-- #app01 ::end::-->
+
+    <hr>
+
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    let app01 = new Vue({
+        el: "#app01",
+        data:{
+            usuarios: [
+                {nome: 'Seya'},
+                {nome: 'Shiryu'},
+                {nome: 'Shun'},
+                {nome: 'Hyoga'},
+            ]
+        },
+
+        filters:{
+            toUpperCase(str){
+                return str.toUpperCase()
+            },
+            truncate(str, max){
+                let output = str.substring(0, max)
+
+                if(str.length > max){
+                    output +=  '...'
+                }
+
+                return output
+            }
+        }
+    })
+</script>
+</body>
+</html>
