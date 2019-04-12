@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <title>[A14] - Componentes</title>
+</head>
+<body>
+
+<template id="menu01">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item" v-for="item in itens">
+            <a class="nav-link" href="#">{{item.label}}</a>
+        </li>
+    </ul>
+</template>
+
+<template id="nav01">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <menubar01 :itens="[{label: '+Home'}, {label: '+Link'}, {label: '+Disabled'}]"></menubar01>
+
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </nav>
+</template>
+
+<template id="nav02">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar 02</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <menubar01 :itens="topNav"></menubar01>
+
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </nav>
+</template>
+
+<template id="nav03">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar 03</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <menubar03 :itens="topNav"></menubar03>
+
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </nav>
+</template>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Passando os dados por componentes direto na tag</h1>
+
+    <div id="app01">
+        <navbar01></navbar01>
+    </div>
+
+    <hr>
+
+    <h1>Passando os dados por componentes pela função data</h1>
+
+    <div id="app02">
+        <navbar02></navbar02>
+
+        <br />
+
+        <p>
+            O atributo data dentro de um componente deve ser obrigatoriamente utilizado como função.
+        </p>
+
+        <code>
+            [...]<br />
+            data(){
+                return [...]
+            }
+        </code>
+    </div>
+
+    <hr>
+
+    <h1>Definindo mais informações de props</h1>
+    <p>
+        Dá pra especificar bem mais informações ao passar dados de um component pro outro, a vantagem disso é que
+        caso alguma especificação não atenda os requisitos o Vue.js retorna um erro.
+    </p>
+
+    <div id="app03">
+        <navbar03></navbar03>
+    </div>
+
+    <hr>
+
+    <div id="app04">
+        <menubar01 :itens="[{label: 'A empresa'}, {'label': 'Serviços'}]"></menubar01>
+    </div>
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    Vue.component('navbar01', {
+        template: '#nav01'
+    })
+
+    Vue.component('menubar01', {
+        template: '#menu01',
+        props: ['itens']
+    })
+
+    new Vue({
+        el: '#app01',
+        data: {}
+    })
+
+     Vue.component('navbar02', {
+        template: '#nav02',
+        data(){
+            return{
+                topNav: [
+                    {label: '-Home'},
+                    {label: '-Link'},
+                    {label: '-Disabled'},
+                ]
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app02',
+        data: {}
+    })
+
+    Vue.component('navbar03', {
+        template: '#nav03',
+        data(){
+            return{
+                topNav: [
+                    {label: '*Home'},
+                    {label: '*Link'},
+                    {label: '*Disabled'},
+                ]
+            }
+        }
+    })
+
+    Vue.component('menubar03', {
+        template: '#menu01',
+        // props é um objeto
+        props: {
+            itens:{
+                type: Array,
+                required: true,
+                // valor padrão caso não venha nehuma informação.
+                default: []
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app03',
+        data: {}
+    })
+
+    new Vue({
+        el: '#app04',
+        data: {}
+    })
+
+</script>
+</body>
+</html>
