@@ -77,3 +77,9 @@ input[type='text'], textarea, select{
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.col-4 .titulo{
+    text-align: center;
+    color: #438e79;
+    font-size: 20px;
+}
