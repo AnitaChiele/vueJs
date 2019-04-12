@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <title>[A12] - Componentes</title>
+</head>
+<body>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Componentes</h1>
+
+    <p>
+        O Vue.js suporta a criação de template para reaproveitar partes do código. Abaixo no código estão
+        dois exemplos de como utilizá-los. <br />
+
+        A definição da tag de tamplate pode ocorrer fora do app, porém, para exibí-lo é necessário estar
+        em uma tag.
+    </p>
+
+    <div class="row">
+        <div class="col-6">
+<pre>
+<code>// estilo inline
+Vue.component('nome-tag01', {
+    template: '&ltinput type="text">'
+})
+</code>
+</pre>
+            <p>
+                Para imprimir a tag seria necessário utilizar a tag abaixo dentro de um app:
+            </p>
+            <code>
+                &ltnome-tag01>&lt/nome-tag01>
+            </code>
+        </div>
+
+        <div class="col-6">
+<pre>
+<code>// utilizando a tag template id com o html.
+Vue.component('nome-tag02', {
+    template: '#conteudo'
+})
+</code>
+</pre>
+            <p>
+                Conteúdo a ser replicado:
+            </p>
+<pre>
+<code>&lttemplate id="conteudo">
+    &ltul>
+        &ltli>
+            Teste
+        &lt/li>
+    &lt/ul>
+&lt/template>
+</code>
+</pre>
+            <p>
+                Para imprimir a tag seria necessário utilizar a tag abaixo dentro de um app:
+            </p>
+            <code>
+                &ltnome-tag02>&lt/nome-tag02>
+            </code>
+        </div>
+    </div> <!-- .row ::end::-->
+
+    <hr>
+
+    <div class="row">
+        <div class="col-5">
+            <div id="app01">
+                <div class="titulo">App: #app01</div>
+                menu-bar-bad:
+                <menu-bar-bad></menu-bar-bad>
+                menu-bar-good:
+                <menu-bar-good></menu-bar-good>
+                Replicando o menu-bar-good no mesmo app:
+                <menu-bar-good></menu-bar-good>
+            </div>
+        </div>
+
+        <div class="col-5">
+            <div id="app02">
+                <div class="titulo">App: #app02</div>
+                menu-bar-bad:
+                <menu-bar-bad></menu-bar-bad>
+                menu-bar-good:
+                <menu-bar-good></menu-bar-good>
+                Replicando o menu-bar-good no mesmo app:
+                <menu-bar-good></menu-bar-good>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="titulo">Fora das apps</div>
+            menu-bar-bad:
+            <menu-bar-bad></menu-bar-bad>
+            <br />
+            menu-bar-good:
+            <menu-bar-good></menu-bar-good>
+        </div>
+
+    </div>
+
+    <template id="menu">
+        <ul>
+            <li>
+                Item bom 1
+            </li>
+            <li>
+                Item bom 2
+            </li>
+        </ul>
+    </template>
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    Vue.component('menu-bar-bad', {
+        template: `
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+        `
+    })
+
+    Vue.component('menu-bar-good', {
+        template: '#menu'
+    })
+
+    let app01 = new Vue({
+        el: '#app01',
+        data: {}
+    })
+
+    new Vue({
+        el: '#app02',
+        data: {}
+    })
+</script>
+</body>
+</html>
