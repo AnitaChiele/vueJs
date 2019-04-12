@@ -78,8 +78,16 @@ input[type='text'], textarea, select{
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.col-4 .titulo{
+
+.col-4 .titulo,
+.col-3 .titulo,
+.col-6 .titulo,
+.col-12 .titulo{
     text-align: center;
     color: #438e79;
     font-size: 20px;
+}
+
+.col-6 .titulo{
+    font-size: 15px;
 }

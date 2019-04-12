@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <title>[A11] - Lifecycle hooks</title>
+</head>
+<body>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Lifecycle hooks</h1>
+    <p>
+        Acesse a página oficial do Vue.js para ver o
+        <a href="https://br.vuejs.org/v2/guide/instance.html#Diagrama-do-Ciclo-de-Vida" target="_blank">
+            diagrama de ciclos e enteder melhor
+        </a>, ou em <a href="https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram" target="_blank>">inglês</a>.
+        No diagrama da imagem tudo que está com borda vermelha e fundo branco são hooks: beforeCreate, created,
+        beforeMount, mounted, beforeUpdate, updated, beforeDestroy e destroyed. <br />
+    </p>
+
+    <br />
+
+    <div class="row">
+        <div class="col-4">
+            <div class="titulo">Observe Data / Init events & lifecycle:</div>
+            Irá ler o atributo de data definido no para ter acesso aos dados.
+        </div>
+        <div class="col-4">
+            <div class="titulo">Init Events / Injections & reactivity</div>
+            Irá inicializar os eventos.
+        </div>
+        <div class="col-4">
+            <div class="titulo">Hook mounted</div>
+            <p>
+                Nesse hook e nos próximos, já existe acesso ao DOM.
+            </p>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-12">
+            <div class="titulo">Hook beforeUpdate e updated</div>
+            <p>
+                Esse hook só será executado se alguma data estiver sendo processada no html e sofrer uma
+                alteração. Para entender melhor apague a marcação responsável por imprimir nome ( {{nome}} )
+                dentro da div#app01 e rode no console do browser:
+            </p>
+
+            <code>
+                $ app01.nome="Rainha de Mereen"
+            </code>
+
+            <div id="app01">
+                {{nome}}
+                <div class="apagar" id="apagar">Serei apagado.</div>
+            </div>
+
+            <br />
+            <p>
+                Agora tente apagar a div #apagar no console:
+            </p>
+            <code>
+                $ document.getElementById("apagar").remove();
+            </code>
+
+            <p>
+                Não executou nenhum dos dois hooks, ou seja, esses hooks só são executados quando alguma data que foi
+                mapeada no hook created sofrer alguma alteração e estiver sendo utilizada no DOM.
+            </p>
+
+        </div>
+    </div>
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    let app01 = new Vue({
+        el: "#app01",
+
+        beforeCreate() {
+            console.log("beforeCreate")
+            console.log("nome:", this.nome)
+            console.log("el:", this.$el)
+        },
+        created() {
+            console.log("created")
+            console.log("nome:", this.nome)
+            console.log("el:", this.$el)
+        },
+        beforeMount() {
+            console.log("beforeMount")
+            console.log("nome:", this.nome)
+            console.log("el:", this.$el)
+        },
+        mounted() {
+            console.log("mounted")
+            console.log("nome:", this.nome)
+            console.log("el:", this.$el)
+        },
+        beforeUpdate() {
+            console.log("beforeUpdate")
+            console.log("nome:", this.nome)
+            console.log("el:", this.$el)
+        },
+        updated() {
+            console.log("updated")
+            console.log("nome:", this.nome)
+            console.log("el:", this.$el)
+        },
+
+        data:{
+            nome: "Daenerys Targaryen",
+        },
+    })
+</script>
+</body>
+</html>
