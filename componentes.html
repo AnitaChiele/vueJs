@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="static/css/style.css">
 
-  <title>[A12] - Componentes</title>
+  <title>[A12-A13] - Componentes</title>
 </head>
 <body>
 
@@ -17,10 +17,8 @@
 
     <p>
         O Vue.js suporta a criação de template para reaproveitar partes do código. Abaixo no código estão
-        dois exemplos de como utilizá-los. <br />
-
-        A definição da tag de tamplate pode ocorrer fora do app, porém, para exibí-lo é necessário estar
-        em uma tag.
+        dois exemplos de como utilizá-los. A definição da tag de tamplate pode ocorrer fora do app, porém,
+        para exibí-lo é necessário estar em uma tag.
     </p>
 
     <div class="row">
@@ -119,6 +117,50 @@ Vue.component('nome-tag02', {
         </ul>
     </template>
 
+    <hr>
+
+    <h1>Componentes pais e filhos</h1>
+
+    <p>
+        São os componentes que estão um dentro do outro, sendo possível ter N componentes.
+    </p>
+
+    <template id="menu2">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+        </ul>
+    </template>
+
+    <template id="nav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <menubar></menubar>
+
+            <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+        </nav>
+    </template>
+
+    <div id="app03">
+        <navbar></navbar>
+    </div>
+
 </div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
 
 <script src="https://unpkg.com/vue"></script>
@@ -144,6 +186,19 @@ Vue.component('nome-tag02', {
 
     new Vue({
         el: '#app02',
+        data: {}
+    })
+
+    Vue.component('navbar', {
+        template: '#nav'
+    })
+
+    Vue.component('menubar', {
+        template: '#menu2'
+    })
+
+    new Vue({
+        el: '#app03',
         data: {}
     })
 </script>
