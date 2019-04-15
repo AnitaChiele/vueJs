@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
 
   <title>[A12-A13] - Componentes</title>
 </head>
@@ -26,11 +26,17 @@
         Os componentes devem ser declarados antes da instancia de new Vue({}), caso contrário, não funcionarão.
     </p>
 
+    <p class='text-tip'>
+        <span class="titulo">Prefixo:</span>
+        Nos exemplos de componentes, por padrão utilizarei o prefixo: cpt- na frente do nome do componente
+        para ser mais visível no código quando estamos referenciando a um componente, ou, ao id do template.
+    </p>
+
     <div class="row">
         <div class="col-6">
 <pre>
 <code>// estilo inline
-Vue.component('nome-tag01', {
+Vue.component('cpt-nome-tag01', {
     template: '&ltinput type="text">'
 })
 </code>
@@ -39,14 +45,14 @@ Vue.component('nome-tag01', {
                 Para imprimir a tag seria necessário utilizar a tag abaixo dentro de um app:
             </p>
             <code>
-                &ltnome-tag01>&lt/nome-tag01>
+                &ltcpt-nome-tag01>&lt/cpt-nome-tag01>
             </code>
         </div>
 
         <div class="col-6">
 <pre>
 <code>// utilizando a tag template id com o html.
-Vue.component('nome-tag02', {
+Vue.component('cpt-nome-tag02', {
     template: '#conteudo'
 })
 </code>
@@ -68,7 +74,7 @@ Vue.component('nome-tag02', {
                 Para imprimir a tag seria necessário utilizar a tag abaixo dentro de um app:
             </p>
             <code>
-                &ltnome-tag02>&lt/nome-tag02>
+                &ltcpt-nome-tag02>&lt/cpt-nome-tag02>
             </code>
         </div>
     </div> <!-- .row ::end::-->
@@ -79,34 +85,34 @@ Vue.component('nome-tag02', {
         <div class="col-5">
             <div id="app01">
                 <div class="titulo">App: #app01</div>
-                menu-bar-bad:
-                <menu-bar-bad></menu-bar-bad>
-                menu-bar-good:
-                <menu-bar-good></menu-bar-good>
-                Replicando o menu-bar-good no mesmo app:
-                <menu-bar-good></menu-bar-good>
+                cpt-menu-bar-bad:
+                <cpt-menu-bar-bad></cpt-menu-bar-bad>
+                cpt-menu-bar-good:
+                <cpt-menu-bar-good></cpt-menu-bar-good>
+                Replicando o cpt-menu-bar-good no mesmo app:
+                <cpt-menu-bar-good></cpt-menu-bar-good>
             </div>
         </div>
 
         <div class="col-5">
             <div id="app02">
                 <div class="titulo">App: #app02</div>
-                menu-bar-bad:
-                <menu-bar-bad></menu-bar-bad>
-                menu-bar-good:
-                <menu-bar-good></menu-bar-good>
-                Replicando o menu-bar-good no mesmo app:
-                <menu-bar-good></menu-bar-good>
+                cpt-menu-bar-bad:
+                <cpt-menu-bar-bad></cpt-menu-bar-bad>
+                cpt-menu-bar-good:
+                <cpt-menu-bar-good></cpt-menu-bar-good>
+                Replicando o cpt-menu-bar-good no mesmo app:
+                <cpt-menu-bar-good></cpt-menu-bar-good>
             </div>
         </div>
 
         <div class="col-2">
             <div class="titulo">Fora das apps</div>
-            menu-bar-bad:
-            <menu-bar-bad></menu-bar-bad>
+            cpt-menu-bar-bad:
+            <cpt-menu-bar-bad></cpt-menu-bar-bad>
             <br />
-            menu-bar-good:
-            <menu-bar-good></menu-bar-good>
+            cpt-menu-bar-good:
+            <cpt-menu-bar-good></cpt-menu-bar-good>
         </div>
 
     </div>
@@ -152,7 +158,7 @@ Vue.component('nome-tag02', {
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <menubar></menubar>
+            <cpt-menubar></cpt-menubar>
 
             <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -163,7 +169,7 @@ Vue.component('nome-tag02', {
     </template>
 
     <div id="app03">
-        <navbar></navbar>
+        <cpt-navbar></cpt-navbar>
     </div>
 
 </div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
@@ -171,7 +177,7 @@ Vue.component('nome-tag02', {
 <script src="https://unpkg.com/vue"></script>
 
 <script>
-    Vue.component('menu-bar-bad', {
+    Vue.component('cpt-menu-bar-bad', {
         template: `
         <ul>
             <li>Item 1</li>
@@ -180,7 +186,7 @@ Vue.component('nome-tag02', {
         `
     })
 
-    Vue.component('menu-bar-good', {
+    Vue.component('cpt-menu-bar-good', {
         template: '#menu'
     })
 
@@ -194,11 +200,11 @@ Vue.component('nome-tag02', {
         data: {}
     })
 
-    Vue.component('navbar', {
+    Vue.component('cpt-navbar', {
         template: '#nav'
     })
 
-    Vue.component('menubar', {
+    Vue.component('cpt-menubar', {
         template: '#menu2'
     })
 

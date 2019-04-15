@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+
+  <title>[A14] Componentes - props</title>
+</head>
+<body>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Componentes - props</h1>
+
+    <p>
+        O nome dos atributos html são tratados como case insensitives pelos browsers, ou seja, não há diferença
+        entre letras maiúscula e minusculas.
+    </p>
+    <code>
+        &ltdiv atributoNovo='ok'>&lt/div> == &ltdiv atributonovo='ok'>&lt/div>
+    </code>
+    <p>
+        No entanto no Vue é possível utilizar: <br />
+        1. Prop js camelCase e html kebab-case  <br />
+        2. Prop js e atributo html kebab-case.
+        <br /><br />
+        Veja abaixo as chamas diferentes, sendo as válidas as que aparecem "okay" em destaque após os dois pontos.
+    </p>
+
+    <div id="app01">
+        Prop js camelCase e atributo html kebab-case: <cpt-camel-case post-title="okay"></cpt-camel-case>. <br />
+        Prop js e atributo html  kebab-case: <cpt-kebab-case post-title="okay"></cpt-kebab-case>. <br />
+        Prop js e atributo html camelCase: <cpt-camel-case postTitle="okay"></cpt-camel-case>. <br />
+        Prop js kebab-case e atributo html camelCase: <cpt-kebab-case postTitle="okay"></cpt-kebab-case>. <br />
+    </div>
+
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    Vue.component('cpt-camel-case', {
+        props: ['postTitle'],
+        template: "<span class='in_realtime'>{{ postTitle }}</span>"
+    })
+
+    Vue.component('cpt-kebab-case', {
+        props: ['post-title'],
+        template: "<span class='in_realtime'>{{ postTitle }}</span>"
+    })
+
+    new Vue({
+        el: '#app01',
+        data: {}
+    })
+</script>
+</body>
+</html>

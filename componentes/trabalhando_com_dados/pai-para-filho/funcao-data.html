@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="../../../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../static/css/style.css">
+
+  <title>[A14] Componentes - Passando os dados pela função data</title>
+</head>
+<body>
+
+<template id="menu01">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item" v-for="item in itens">
+            <a class="nav-link" href="#">{{item.label}}</a>
+        </li>
+    </ul>
+</template>
+
+<template id="nav01">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar 02</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <cpt-menu01 :itens="topNav"></cpt-menu01>
+
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </nav>
+</template>
+
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Passando os dados por componentes pela função data</h1>
+
+    <div id="app02">
+        <cpt-nav02></cpt-nav02>
+    </div> <!-- #app02 ::end::-->
+
+    <p class='text-tip'>
+        <span class="titulo">Quem é quem no exemplo acima?</span>
+        O componente <b>pai</b> é o: <b>nav01</b> que é o template id: <b>cpt-nav01</b>. <br />
+        O componente <b>filho</b> é o: <b>menu01</b> que é o template id: <b>cpt-menu01</b>. <br />
+    </p>
+
+    <p>
+        Ainda no fluxo de passar os dados do componente pai para o componente filho é possível passar os dados através
+        da função data em vez de chumbado na tag. Para isso é necessário definir uma variável no componente pai - como
+        já foi mostrado em <a href="direto-na-tag.html">direto na tag</a>, e setar no js do componente pai os valores.
+    </p>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="titulo">Componente Pai</div>
+            <p>
+                No html é necessário chamar o componente filho, passar uma variável e definir uma variável que irá
+                ter seus valores definidos no VueJS do componente pai:
+            </p>
+            <code>
+                &ltcpt-filho :var-itens="var-content">&lt/cpt-filho>
+            </code>
+            <p>
+                [14.02] Ex: <br />
+                <code>
+                    &ltcpt-menu01 :itens="itens-menu">&lt/cpt-menu01>
+                </code>
+            </p>
+            <p>
+                No Vue defina o valor de var-content:
+            </p>
+<pre>
+<code>Vue.component('cpt-pai', {
+    template: '#qualquer-template',
+    data(){
+        return{
+            var-itens: [
+                {label: 'Pagina inicial'},
+                {label: 'Sobre'},
+                {label: 'Contato'},
+            ]
+        }
+    }
+})
+</code>
+</pre>
+        </div> <!-- .col-6 ::end::-->
+
+        <div class="col-6">
+            <div class="titulo">Componente Filho</div>
+            <p>
+                Para ler os dados enviados pelo componente pai, é necessário imprimir a variável no html:
+            </p>
+            <code>
+                &ltli v-for="i in var-itens">{{i.label}}&lt/li>
+            </code>
+            <p>
+                Levando em consideração os nomes definos no ex [14.02]:
+                <code>
+                    &ltli v-for="item in itens">{{item.label}}&lt/li>
+                </code>
+            </p>
+            <p>
+                E no VueJS é necessário indicar qual é o nome da variável que foi definido para chamar o componente
+                filho no componente pai:
+            </p>
+
+<pre>
+<code>Vue.component('cpt-filho', {
+    template: '#qualquer-template2',
+    props: ['var-itens']
+})
+</code>
+</pre>
+            <p>
+                Levando em consideração os nomes definos no ex [14.02]:
+<pre>
+<code>Vue.component('cpt-menu01', {
+    template: '#menu01',
+    props: ['itens']
+})
+</code>
+</pre>
+            </p>
+        </div> <!-- .col-6 ::end::-->
+    </div> <!-- row ::end::-->
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    Vue.component('cpt-menu01', {
+        template: '#menu01',
+        props: ['itens']
+    })
+
+    Vue.component('cpt-nav02', {
+        template: '#nav01',
+        data(){
+            return{
+                topNav: [
+                    {label: '-Home'},
+                    {label: '-Link'},
+                    {label: '-Disabled'},
+                ]
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app02',
+        data: {}
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="../../../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../static/css/style.css">
+
+  <title>[A14] Componentes enviado dados do filho para o componente pai</title>
+</head>
+<body>
+
+<template id="nav05">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar 05</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <menubar05 :itens="topNav"
+            @nome-evento="getLink"
+        ></menubar05>
+
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </nav>
+</template>
+
+<template id="menu05">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item" v-for="(item, index) in itens">
+            <a @click.stop.prevent="Clicando(index)"
+            class="nav-link" href="#">{{item.label}}</a>
+        </li>
+    </ul>
+</template>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Enviando dados do componente filho pro componente pai</h1>
+
+    <div id="app05">
+        <navbar05></navbar05>
+    </div>
+
+    <br />
+
+    <p>
+        Para fazer transferência de dados a partir de um componente filho para o componente pai é necessário
+        utilizarmos o <b>$emit</b>. Ele permitirá a criação de eventos personalizados, além dos eventos padrões (onClick, onFocus, e etc).
+        Para 'escutar' a resposta do $emit basta utilizar o mesmo evento no componente desejado, nesse caso, no
+        componente pai.
+    </p>
+
+    <p class='text-tip'>
+        <span class="titulo">Quem é quem no exemplo acima?</span>
+        O componente <b>filho</b> é o: <b>menu05</b>. <br />
+        O componente <b>pai</b> é o: <b>nav05</b>. <br />
+    </p>
+
+    <br />
+
+    <div class="row">
+        <div class="col-6">
+            <div class="titulo">Componente Filho</div>
+            <p>
+                Para o enviar as informações para o componente pai é necessário criar um evento personalizado,
+                na tag html deve ter:
+            </p>
+            <code>
+                @click="nomeEventoCriado(Param)"
+            </code>
+            <p>
+                No vue:
+            </p>
+<pre>
+<code>methods: {
+    nomeEventoCriado (param) {
+        this.$emit('nome-do-evento', index)
+    }
+}
+</code>
+</pre>
+        </div>
+
+        <div class="col-6">
+            <div class="titulo">Componente Pai</div>
+            <p>
+                Para pegar os dados enviados do compoente filho é necessário criar uma função que lide com essas informações
+                no componente pai, na tag html deve ter:
+            </p>
+            <code>
+                @nome-do-evento="nomeFuncaoQueVaiLer"
+            </code>
+            <p>
+                No vue:
+            </p>
+<pre>
+<code>
+methods: {
+    nomeFuncaoQueVaiLer(param){
+        alert("os dados chegaram no pai!")
+    }
+}
+</code>
+</pre>
+        </div>
+    </div>
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    Vue.component('navbar05', {
+        template: '#nav05',
+        data() {
+            return {
+                topNav: [
+                    {label: '%Home'},
+                    {label: '%Link'},
+                    {label: '%Disabled'},
+                ]
+            }
+        },
+        methods: {
+            getLink(index){
+                alert("index: " + index + " | Label: " + this.topNav[index].label)
+            }
+        }
+    })
+
+    Vue.component('menubar05', {
+        template: '#menu05',
+        props: {
+            itens: {
+                type: Array,
+                required: true
+            }
+        },
+        methods: {
+            Clicando (index) {
+                this.$emit('nome-evento', index)
+            }
+        }
+    })
+
+    new Vue({
+        el: '#app05',
+        data: {}
+    })
+</script>
+</body>
+</html>

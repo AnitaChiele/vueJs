@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="../../../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../static/css/style.css">
+
+  <title>[A14] Componentes - Passando os dados direto na tag</title>
+</head>
+<body>
+
+<template id="menu01">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item" v-for="item in itens">
+            <a class="nav-link" href="#">{{item.label}}</a>
+        </li>
+    </ul>
+</template>
+
+<template id="nav01">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <cpt-menu01 :itens="[{label: '+Home'}, {label: '+Link'}, {label: '+Disabled'}]"></cpt-menu01>
+
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    </nav>
+</template>
+
+<div class="container"><div class="row"><div class="col-12">
+    <h1>Passando os dados por componentes direto na tag</h1>
+
+    <div id="app01">
+        <cpt-nav01></cpt-nav01>
+    </div>
+
+    <br />
+
+    <p>
+        É possível passar informações do componente pai para o componente filho direto na tag, ou seja,
+        com os dados chumbados. Utilizaremos as propriedades ( <b>props</b> ) do Vue para enviar os dados
+        para o componente filho.
+    </p>
+
+    <p class='text-tip'>
+        <span class="titulo">Quem é quem no exemplo acima?</span>
+        O componente <b>pai</b> é o: <b>nav01</b> que é o template id: <b>cpt-nav01</b>. <br />
+        O componente <b>filho</b> é o: <b>menu01</b> que é o template id: <b>cpt-menu01</b>. <br />
+    </p>
+
+    <br />
+
+    <div class="row">
+        <div class="col-6">
+            <div class="titulo">Componente Pai</div>
+            <p>
+                Vamos chamar o componente filho:
+            </p>
+            <code>
+                &ltcomponente-filho>&lt/componente-filho>
+            </code>
+
+        </div> <!-- .col-6 ::end::-->
+
+        <div class="col-6">
+            <div class="titulo">Componente Filho</div>
+            <p>
+                Para ler os dados é necessário imprimir no a variável definida na props do componente filho
+                do VueJS:
+            </p>
+            <code>
+                &ltli v-for="i in var-props">{{i.label}}&lt/li>
+            </code>
+            <p>
+                Ex: <br />
+                <code>
+                    &ltli v-for="item in itens">{{item.label}}&lt/li>
+                </code>
+            </p>
+            <p>
+                Definição do componente filho no VueJs:
+            </p>
+<pre>
+<code>Vue.component('cpt-menu01', {
+    template: '#menu01',
+    props: ['var-props']
+})
+</code>
+</pre>
+            <p>
+                Ex: <br />
+<pre>
+<code>Vue.component('cpt-menu01', {
+    template: '#menu01',
+    props: ['itens']
+})
+</code>
+</pre>
+            </p>
+        </div> <!-- .col-6 ::end::-->
+    </div> <!-- .row ::end::-->
+
+
+</div><!-- .col-12 ::end::--></div><!-- .row ::end:: --></div><!-- .container ::end:: -->
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    Vue.component('cpt-nav01', {
+        template: '#nav01'
+    })
+
+    Vue.component('cpt-menu01', {
+        template: '#menu01',
+        props: ['itens']
+    })
+
+    new Vue({
+        el: '#app01',
+        data: {}
+    })
+</script>
+</body>
+</html>
